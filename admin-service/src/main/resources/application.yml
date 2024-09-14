@@ -1,0 +1,47 @@
+application-description: Admin to update the available ticket status based on the tickets booked
+application-version: 1.0.0
+
+management:
+    endpoint:
+        health:
+            show-details: always
+        metrics:
+            enabled: true
+        prometheus:
+            enabled: true
+    endpoints:
+        web:
+            base-path: /actuator
+            exposure:
+                include: '*'
+
+server:
+    port: 8084
+    servlet:
+        context-path: /api/v1.0/moviebooking
+
+spring:
+    application:
+        name: admin-service
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/movie_booking_db
+        username: root
+        password: root@123
+    jpa:
+        hibernate:
+            ddl-auto: none
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL8Dialect
+        show-sql: true
+    kafka:
+        producer:
+            bootstrap-servers: localhost:9092
+            key-serializer: org.apache.kafka.common.serialization.StringSerializer
+            value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+        topic:
+            name: add_new_movie
+
+user-auth-service:
+    url: http://localhost:8081/api/v1.0/moviebooking

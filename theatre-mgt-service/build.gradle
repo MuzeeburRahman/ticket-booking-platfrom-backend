@@ -1,0 +1,61 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.3'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.sapient'
+version = '0.0.1-SNAPSHOT'
+
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+
+	// OpenAPI/Swagger dependencies for generating API docs
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-api:2.6.0'
+
+	// H2 Database for testing
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+
+	// Resilience4j for fault tolerance
+	implementation  'io.github.resilience4j:resilience4j-spring-boot3:2.1.0'
+	//implementation("io.github.resilience4j:resilience4j-spring-boot3")
+
+	// Lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	// Devtools for hot reloading (Optional)
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	testImplementation 'org.mockito:mockito-core'
+	testImplementation 'org.mockito:mockito-junit-jupiter'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

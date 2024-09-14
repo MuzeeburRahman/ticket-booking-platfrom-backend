@@ -1,0 +1,36 @@
+application-description: User can book the tickets
+application-version: 1.0.0
+management:
+    endpoint:
+        health:
+            show-details: always
+        metrics:
+            enabled: true
+        prometheus:
+            enabled: true
+    endpoints:
+        web:
+            base-path: /actuator
+            exposure:
+                include: '*'
+server:
+    port: 8083
+    servlet:
+        context-path: /api/v1.0/moviebooking
+spring:
+    application:
+        name: ticket-booking-service
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: root@123
+        url: jdbc:mysql://127.0.0.1:3306/movie_booking_db
+        username: root
+    jpa:
+        hibernate:
+            ddl-auto: none
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL8Dialect
+        show-sql: true
+user-auth-service:
+    url: http://localhost:8081/api/v1.0/moviebooking

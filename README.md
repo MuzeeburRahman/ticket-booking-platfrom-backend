@@ -32,7 +32,8 @@ Movie ticket booking platform is that caters to both B2B (theatre partners) and 
 
 - Start Kafka Server / Broker
 
-      sh bin/kafka-server-start.sh config/server.properties-
+      sh bin/kafka-server-start.sh config/server.properties
+
 ## OpenAPI Endpoints
   - search-service:http://localhost:8086/swagger-ui/index.html
     - Browse theatres currently running the show (movie selected) in the town, including show timing by a chosen date.

@@ -34,8 +34,12 @@ Movie ticket booking platform is that caters to both B2B (theatre partners) and 
 
       sh bin/kafka-server-start.sh config/server.properties-
 ## OpenAPI Endpoints
-- search-service:http://localhost:8086/swagger-ui/index.html
-- user-auth-service:http://localhost:8081/api/v1.0/moviebooking/swagger-ui/index.html
+  - search-service:http://localhost:8086/swagger-ui/index.html
+    - Browse theatres currently running the show (movie selected) in the town, including show timing by a chosen date.
+        - http://localhost:8086/swagger-ui/index.html#/search-controller/searchTheatres
+        - movieId:1, cityName:New York, showDate :2024-09-20
+        - **Request:** http://localhost:8086/api/search/theatres?movieId=1&cityName=New%20York&showDate=2024-09-20
+  - user-auth-service:http://localhost:8081/api/v1.0/moviebooking/swagger-ui/index.html
 - movie-catalog-service:http://localhost:8082/api/v1.0/moviebooking/swagger-ui/index.html#
 - theatre-mgt-service:http://localhost:8085/api/v1.0/moviebooking/swagger-ui/index.html#
 - ticket-booking-service:http://localhost:8083/api/v1.0/moviebooking/swagger-ui/index.html#
